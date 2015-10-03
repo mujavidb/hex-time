@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Hex-time</title>
+	<style>
+		body {
+			margin:0;
+			padding:0;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height:100vh;
+			width: 100vw;
+			background-color: black;
+			transition: background-color 0.3s ease, width 0.05s ease, height 0.05s ease;
+		}
+		span {
+			text-align: center;
+			color: white;
+			font-family: Helvetica, Arial, sans-serif;
+			font-size: 42px;
+			font-weight: 200;
+		}
+	</style>
+</head>
+<body id="theBody">
+	<div>
+		<span id="theTime"></span>
+	</div>
+	<script type="text/javascript">
+		function colorTime() {
+			var timebox = document.getElementById('theTime');
+			var body = document.getElementById('theBody');
+			var time = new Date;
+			var hours = time.getHours() < 10 ? "0" + time.getHours() : time.getHours();
+			var minutes = time.getMinutes() < 10 ? "0" + time.getMinutes() : time.getMinutes();
+			var seconds = time.getSeconds() < 10 ? "0" + time.getSeconds() : time.getSeconds();
+			timebox.innerHTML = hours + ":" + minutes + ":" + seconds;
+			body.style.backgroundColor = "#" + hours + minutes + seconds;
+
+			setInterval(function() {
+				time = new Date;
+				hours = time.getHours() < 10 ? "0" + time.getHours() : time.getHours();
+				minutes = time.getMinutes() < 10 ? "0" + time.getMinutes() : time.getMinutes();
+				seconds = time.getSeconds() < 10 ? "0" + time.getSeconds() : time.getSeconds();
+				timebox.innerHTML = hours + ":" + minutes + ":" + seconds;
+				body.style.backgroundColor = "#" + hours + minutes + seconds;
+			}, 1000);
+		}
+		document.addEventListener('DOMContentLoaded', colorTime);
+	</script>
+</body>
+</html>
